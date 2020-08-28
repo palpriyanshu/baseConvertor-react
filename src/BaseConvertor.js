@@ -14,7 +14,7 @@ class BaseConvertor extends React.Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(currentBase, value) {
+  onChange(currentBase, { value }) {
     if (isValidNumberForBase(currentBase, value)) {
       this.setState({ currentValue: value, currentBase });
     }
@@ -22,18 +22,19 @@ class BaseConvertor extends React.Component {
 
   render() {
     const baseIds = [...Array(this.props.count - 1).keys()];
+    const inputSections = baseIds.map((id) => (
+      <Input
+        key={id}
+        baseId={id + 2}
+        currentValue={this.state.currentValue}
+        currentBase={this.state.currentBase}
+        onChange={this.onChange}
+      />
+    ));
     return (
       <div className="container">
         <h1>BaseConvertor</h1>
-        {baseIds.map((id) => (
-          <Input
-            key={id}
-            baseId={id + 2}
-            currentValue={this.state.currentValue}
-            currentBase={this.state.currentBase}
-            onChange={this.onChange}
-          />
-        ))}
+        {inputSections}
       </div>
     );
   }

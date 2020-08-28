@@ -6,7 +6,7 @@ const convertBase = function (number, from, to) {
 
 const Label = ({ baseId }) => (
   <div className="label">
-    <label>base{baseId} </label>
+    <label>Base{baseId} </label>
   </div>
 );
 
@@ -19,10 +19,7 @@ const Input = (props) => {
   return (
     <div className="inputSection">
       <Label baseId={baseId} />
-      <input
-        value={value}
-        onChange={(e) => props.onChange(baseId, e.target.value)}
-      />
+      <input value={value} onChange={(e) => props.onChange(baseId, e.target)} />
     </div>
   );
 };
