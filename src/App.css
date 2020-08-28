@@ -2,6 +2,11 @@
   margin-left: 500px;
 }
 
-.inputBox {
+.label {
+  width: 60px;
+}
+
+.inputSection {
   margin: 10px;
+  display: flex;
 }

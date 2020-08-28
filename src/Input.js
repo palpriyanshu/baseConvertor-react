@@ -4,19 +4,24 @@ const convertBase = function (number, from, to) {
   return parseInt(number, from).toString(to);
 };
 
+const Label = ({ baseId }) => (
+  <div className="label">
+    <label>base{baseId} </label>
+  </div>
+);
+
 const Input = (props) => {
-  const { targetBase, currentValue, currentBase } = props;
-  const value =
-    currentValue === ''
-      ? currentValue
-      : convertBase(currentValue, currentBase, targetBase);
+  const { baseId, currentValue, currentBase } = props;
+  const value = currentValue
+    ? convertBase(currentValue, currentBase, baseId)
+    : currentValue;
 
   return (
-    <div className="inputBox">
-      <label>base{targetBase} </label>
+    <div className="inputSection">
+      <Label baseId={baseId} />
       <input
         value={value}
-        onChange={(e) => props.onChange(targetBase, e.target.value)}
+        onChange={(e) => props.onChange(baseId, e.target.value)}
       />
     </div>
   );
