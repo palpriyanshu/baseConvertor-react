@@ -16,7 +16,7 @@ class BaseConvertor extends React.Component {
 
   onChange({ value }, baseId) {
     if (isValidNumberForBase(value, baseId)) {
-      this.setState({ number: parseInt(digit, baseId) });
+      this.setState({ number: parseInt(value, baseId) });
     }
   }
 
