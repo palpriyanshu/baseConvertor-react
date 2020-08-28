@@ -1,9 +1,5 @@
 import React from 'react';
 
-const convertBase = function (number, from, to) {
-  return parseInt(number, from).toString(to);
-};
-
 const Label = ({ baseId }) => (
   <div className="label">
     <label>Base{baseId} </label>
@@ -11,15 +7,13 @@ const Label = ({ baseId }) => (
 );
 
 const Input = (props) => {
-  const { baseId, currentValue, currentBase } = props;
-  const value = currentValue
-    ? convertBase(currentValue, currentBase, baseId)
-    : currentValue;
+  const { baseId, number } = props;
+  const value = isNaN(number) ? '' : number.toString(baseId);
 
   return (
     <div className="inputSection">
       <Label baseId={baseId} />
-      <input value={value} onChange={(e) => props.onChange(baseId, e.target)} />
+      <input value={value} onChange={(e) => props.onChange(e.target, baseId)} />
     </div>
   );
 };

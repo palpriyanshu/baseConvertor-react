@@ -1,7 +1,7 @@
 import React from 'react';
 import Input from './Input';
 
-const isValidNumberForBase = function (base, value) {
+const isValidNumberForBase = function (value, base) {
   return value
     .split('')
     .every((digit) => Number.isInteger(parseInt(digit, base)));
@@ -10,13 +10,13 @@ const isValidNumberForBase = function (base, value) {
 class BaseConvertor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { currentValue: '', currentBase: null };
+    this.state = { number: 0 };
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(currentBase, { value }) {
-    if (isValidNumberForBase(currentBase, value)) {
-      this.setState({ currentValue: value, currentBase });
+  onChange({ value }, baseId) {
+    if (isValidNumberForBase(value, baseId)) {
+      this.setState({ number: parseInt(digit, baseId) });
     }
   }
 
@@ -26,11 +26,11 @@ class BaseConvertor extends React.Component {
       <Input
         key={id}
         baseId={id + 2}
-        currentValue={this.state.currentValue}
-        currentBase={this.state.currentBase}
+        number={this.state.number}
         onChange={this.onChange}
       />
     ));
+
     return (
       <div className="container">
         <h1>BaseConvertor</h1>
